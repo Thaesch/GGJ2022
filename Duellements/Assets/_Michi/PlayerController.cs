@@ -22,10 +22,11 @@ public class PlayerController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 100))
+        if (Physics.Raycast(ray, out hit, LayerMask.GetMask("Ground")))
         {
             //Rotation anpassen.
             Vector3 whereToLook = hit.point - transform.position;
+            whereToLook.y = transform.position.y;
 
             transform.rotation = Quaternion.LookRotation(whereToLook, Vector3.up);
         }
