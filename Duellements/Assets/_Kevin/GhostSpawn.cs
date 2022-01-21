@@ -1,4 +1,4 @@
-using Photon.Pun.UtilityScripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +18,9 @@ public class GhostSpawn : MonoBehaviour
     [SerializeField]
     private GameObject spawnPoint;
 
+    [SerializeField]
+    private List<int> ghostDifficulties = new List<int>() { 0 };
+      
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +30,21 @@ public class GhostSpawn : MonoBehaviour
     private void Spawn()
     {
         Ghost newGhost = Instantiate<Ghost>(ghostPrefab, spawnPoint.transform.position, Quaternion.identity);
+        newGhost.Init(ghostDifficulties[UnityEngine.Random.Range(0, ghostDifficulties.Count)]);
         OnSpawn?.Invoke(newGhost);
-        Debug.Log("Spawned a ghost");
     }
-
-    public void IncreaseDifficulty(float decreaseTime)
+    
+    public void DecreaseCooldown(DifficultyIncreasementCmd spawnCDReductionCmd)
     {
-
+        timer.Waittime -= ((SpawnCDReductionCmd)spawnCDReductionCmd).ReductionTime;
     }
+
+    public void UnlockDifficulty(DifficultyIncreasementCmd difficultyIncreasementCmd)
+    {
+        if (! ghostDifficulties.Contains(((GhostTypeIncreaseCmd)difficultyIncreasementCmd).UnlockedType))
+        {
+            ghostDifficulties.Add(((GhostTypeIncreaseCmd)difficultyIncreasementCmd).UnlockedType);
+        }
+    }
+
 }

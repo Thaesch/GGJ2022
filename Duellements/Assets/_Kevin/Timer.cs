@@ -9,8 +9,8 @@ public class Timer : MonoBehaviour
     public TimeoutEvent OnTimeout;
 
     [SerializeField]
-    protected int waittime;
-    public int Waittime
+    protected float waittime;
+    public float Waittime
     {
         get { return waittime; }
         set { waittime = value; }
@@ -32,7 +32,6 @@ public class Timer : MonoBehaviour
         if (startOnAwake)
         {
             SetTimeOut();
-            Debug.Log("Started Timeout");
         }
     }
 
@@ -62,7 +61,6 @@ public class Timer : MonoBehaviour
         }
 
         OnTimeout?.Invoke();
-        Debug.Log("Timeout");
     }
 
     public void Stop()

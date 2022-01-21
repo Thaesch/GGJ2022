@@ -292,6 +292,107 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ghostSpawns:
   - {fileID: 861525706}
+--- !u!1 &307172186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 307172189}
+  - component: {fileID: 307172191}
+  - component: {fileID: 307172188}
+  - component: {fileID: 307172190}
+  - component: {fileID: 307172187}
+  m_Layer: 0
+  m_Name: DifficultyIncreaser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &307172187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307172186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68cd064daec42d24a952ff5c6e18a99b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 307172190}
+  waittimes: 140000001400000014000000
+  ghostSpawns:
+  - {fileID: 861525706}
+  decreaseTimes:
+  - 0.25
+  - 0.25
+  - 0.25
+  - 0.25
+--- !u!114 &307172188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307172186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b58cc1bf2d71d46b5cf18a577ce6d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 307172191}
+  waittimes: 3c000000
+  ghostSpawns:
+  - {fileID: 861525706}
+--- !u!4 &307172189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307172186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 52.65302, y: 40.0113, z: 16.018929}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &307172190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307172186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcda054d8d4b0049b5baf63dbb18fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waittime: 10
+  startOnAwake: 0
+  oneShot: 0
+--- !u!114 &307172191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307172186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcda054d8d4b0049b5baf63dbb18fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waittime: 60
+  startOnAwake: 0
+  oneShot: 0
 --- !u!1 &861525704
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,6 +443,7 @@ MonoBehaviour:
   ghostPrefab: {fileID: 1989078413}
   timer: {fileID: 861525705}
   spawnPoint: {fileID: 133137279}
+  ghostDifficulties: 00000000
 --- !u!4 &861525707
 Transform:
   m_ObjectHideFlags: 0
@@ -641,6 +743,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb28bf4f4cd2e2489a076b16fb996d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minLives: 3
+  maxLives: 5
 --- !u!135 &1989078414
 SphereCollider:
   m_ObjectHideFlags: 0
