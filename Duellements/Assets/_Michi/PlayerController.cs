@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
 
-        Debug.Log("TEST");
     }
 
     // Update is called once per frame
