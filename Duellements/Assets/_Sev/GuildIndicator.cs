@@ -7,7 +7,7 @@ using UnityEngine;
 public class GuildIndicator : MonoBehaviour
 {
 
-    public Player player;
+    public Guardian player;
 
     // Start is called before the first frame update
     void Start()
