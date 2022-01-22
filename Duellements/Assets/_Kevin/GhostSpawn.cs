@@ -1,6 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Photon.Pun;
+
 using UnityEngine;
 
 public class GhostSpawn : MonoBehaviour
@@ -18,9 +17,9 @@ public class GhostSpawn : MonoBehaviour
     [SerializeField]
     private GameObject spawnPoint;
 
-    [SerializeField]
-    private List<int> ghostDifficulties = new List<int>() { 0 };
-      
+    //[SerializeField]
+    //private List<int> ghostDifficulties = new List<int>() { 0 };
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,24 +28,36 @@ public class GhostSpawn : MonoBehaviour
 
     private void Spawn()
     {
-        //Ghost newGhost = NetworkSpawner.Instantiate<Ghost>("Ghost", spawnPoint.transform.position, Quaternion.identity);
-        Debug.Log(spawnPoint);
-        Ghost newGhost = Instantiate<Ghost>(ghostPrefab, spawnPoint.transform.position, Quaternion.identity);
-        newGhost.Init(ghostDifficulties[UnityEngine.Random.Range(0, ghostDifficulties.Count)]);
-        OnSpawn?.Invoke(newGhost);
+
+
+        Ghost newGhost;
+        if (PhotonNetwork.IsConnected)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                newGhost = NetworkSpawner.Instantiate<Ghost>("Ghost", this.transform.position, Quaternion.identity);
+                OnSpawn?.Invoke(newGhost);
+            }
+        }
+        else
+        {
+            newGhost = Instantiate<Ghost>(ghostPrefab, this.transform.position, Quaternion.identity);
+            OnSpawn?.Invoke(newGhost);
+        }
+
     }
-    
+
     public void DecreaseCooldown(DifficultyIncreasementCmd spawnCDReductionCmd)
     {
         timer.Waittime -= ((SpawnCDReductionCmd)spawnCDReductionCmd).ReductionTime;
     }
 
-    public void UnlockDifficulty(DifficultyIncreasementCmd difficultyIncreasementCmd)
-    {
-        if (! ghostDifficulties.Contains(((GhostTypeIncreaseCmd)difficultyIncreasementCmd).UnlockedType))
-        {
-            ghostDifficulties.Add(((GhostTypeIncreaseCmd)difficultyIncreasementCmd).UnlockedType);
-        }
-    }
+    //public void UnlockDifficulty(DifficultyIncreasementCmd difficultyIncreasementCmd)
+    //{
+    //    if (! ghostDifficulties.Contains(((GhostTypeIncreaseCmd)difficultyIncreasementCmd).UnlockedType))
+    //    {
+    //        ghostDifficulties.Add(((GhostTypeIncreaseCmd)difficultyIncreasementCmd).UnlockedType);
+    //    }
+    //}
 
 }

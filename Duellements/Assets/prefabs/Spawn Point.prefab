@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3099947828086926432}
   - component: {fileID: 3099947828086926447}
   - component: {fileID: 3099947828086926446}
-  - component: {fileID: 3099947828086926445}
+  - component: {fileID: 4905510919826437898}
   m_Layer: 0
   m_Name: Spawn Point
   m_TagString: Untagged
@@ -63,7 +63,7 @@ MonoBehaviour:
   waittime: 3
   startOnAwake: 1
   oneShot: 0
---- !u!114 &3099947828086926445
+--- !u!114 &4905510919826437898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

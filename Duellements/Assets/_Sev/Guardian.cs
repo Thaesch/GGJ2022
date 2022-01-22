@@ -5,7 +5,6 @@ using _Marco.Scripts;
 using UnityEngine;
 
 
-[RequireComponent(typeof (PlayerController))]
 [RequireComponent(typeof (Shoot))]
 public class Guardian : MonoBehaviour
 {
