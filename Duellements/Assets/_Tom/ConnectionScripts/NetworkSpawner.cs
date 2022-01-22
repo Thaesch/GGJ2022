@@ -8,7 +8,7 @@ public class NetworkSpawner : MonoBehaviour
 
     public static GameObject Instantiate(string prefabName, Vector3 position, Quaternion rotation)
     {
-        return PhotonNetwork.Instantiate(prefabName, position, rotation);
+        return PhotonNetwork.Instantiate("prefabs/" + prefabName, position, rotation);
     }
 
     public static void Destroy(GameObject gameObject)
