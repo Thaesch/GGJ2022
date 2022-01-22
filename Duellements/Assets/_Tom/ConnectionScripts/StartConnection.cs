@@ -6,8 +6,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace Dualement
-{
 
 
     public class StartConnection : MonoBehaviourPunCallbacks
@@ -97,4 +95,3 @@ namespace Dualement
         }
 
     }
-}

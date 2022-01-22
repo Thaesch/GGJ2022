@@ -5,10 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Dualement
-{
-
-
 
     public class GamePlayNetwork : MonoBehaviourPunCallbacks
     {
@@ -38,9 +34,7 @@ namespace Dualement
 
         public override void OnPlayerLeftRoom(Photon.Realtime.Player other)
         {
-
+            
         }
 
     }
-
-}
