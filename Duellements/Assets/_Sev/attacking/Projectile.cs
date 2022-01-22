@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,27 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Destructive))]
 public class Projectile : MonoBehaviour
 {
 
-    public float Damage = 1.0f;
     public float Speed = 1.0f;
     public float Lifetime = 5.0f;
 
+    public void OnEnable()
+    {
+        GetComponent<Destructive>().OnHit += Hit;
+    }
+
+    public void OnDisable()
+    {
+        GetComponent<Destructive>().OnHit -= Hit;
+    }
+
+    private void Hit(Damagable damagable)
+    {
+        SelfDestruct();
+    }
 
     protected void Update()
     {
@@ -24,22 +39,14 @@ public class Projectile : MonoBehaviour
         }
     }
 
+   
+
     private void SelfDestruct()
     {
         Destroy(gameObject);
 
     }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-
-        Damagable dmg = collider.GetComponent<Damagable>();
-        if(dmg != null)
-        {
-            dmg.Damage(Damage);
-        }
-
-        SelfDestruct();
-    }
+  
 
 }
