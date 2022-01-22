@@ -126,8 +126,8 @@ public class Ghost : MonoBehaviourPunCallbacks
 
         Relation rel = Elements.RelationOf(incoming, element);
 
-        if (rel == Relation.Advantage) damage *= 2;
-        else if (rel == Relation.Disadvantage) damage *= 0.5f;
+        if (rel == Relation.Advantage) damage *= 4;
+        else if (rel == Relation.Disadvantage) damage *= 0.25f;
 
         health -= damage;
         healthbar.setHealth(health);

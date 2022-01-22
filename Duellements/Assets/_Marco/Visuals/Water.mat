@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Water
-  m_Shader: {fileID: -6465566751694194690, guid: c1f8ac64bac3e494ab407723ab737d3b, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 7ffd7787a16da9a409ff57050a9cfd96, type: 3}
   m_ShaderKeywords: _EMISSION _SPECULAR_SETUP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
