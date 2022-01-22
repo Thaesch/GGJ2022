@@ -6,9 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 10;
     // Start is called before the first frame update
+    public HealthBar healthbar;
     void Start()
     {
-
+        healthbar.setMaxHealth(100);
     }
 
     // Update is called once per frame
