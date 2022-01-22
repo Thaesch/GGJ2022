@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 
 
 public enum Relation { Disadvantage = -1, None = 0, Advantage = 1 }
@@ -9,6 +10,19 @@ public enum Element { NORMAL = 0, WATER, FIRE, GROUND, WIND }
 
 public class Elements
 {
+
+    public List<Element> GetMagicElements()
+    {
+        List<Element> elements = System.Enum.GetValues(typeof(Element)).Cast<Element>().ToList();
+        elements.RemoveAt(0);
+        return elements;
+    }
+
+    public List<Element> GetMagicElementsInRandomOrder()
+    {
+        List<Element> elements = GetMagicElements();
+        return elements.OrderBy(a => Random.value).ToList();
+    }
 
     public static Element fromNumber(int i)
     {

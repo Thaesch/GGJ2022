@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NetworkSpawner : MonoBehaviour
+public class NetworkSpawner
 {
 
     public static T Instantiate<T>(string prefabName, Vector3 position, Quaternion rotation)

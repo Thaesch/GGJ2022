@@ -11,7 +11,7 @@ public class SpawnTimeCooldownDecrease : DifficultyIncreaser
     override
         protected void SetConnection(GhostSpawn gs)
     {
-        OnDifficultyIncrease += gs.DecreaseCooldown;
+        //OnDifficultyIncrease += gs.DecreaseCooldown;
     }
 
     override

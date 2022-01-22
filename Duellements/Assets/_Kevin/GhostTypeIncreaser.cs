@@ -17,7 +17,7 @@ public class GhostTypeIncreaser : DifficultyIncreaser
     override
         protected void SetConnection(GhostSpawn gs)
     {
-        OnDifficultyIncrease += gs.UnlockDifficulty;
+        //OnDifficultyIncrease += gs.UnlockDifficulty;
     }
 
 }
