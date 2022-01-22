@@ -23,9 +23,6 @@ public class FollowPlayer : MonoBehaviour
         //transform.position = player.position 
         float wheelMovement = Input.GetAxis("Mouse ScrollWheel");
         cameraDistance -= (wheelMovement * mouseWheelSenistivity);
-        Debug.Log("Distanz: " + cameraDistance);
-        Debug.Log("Maus: " + wheelMovement);
-        Debug.Log("Sensitivity: " + mouseWheelSenistivity);
         if (cameraDistance > maxCameraDistance)
         {
             cameraDistance = maxCameraDistance;
