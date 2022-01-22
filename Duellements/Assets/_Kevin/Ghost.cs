@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.AI;
 
 public class Ghost : MonoBehaviour
 {
+
+    private enum DeathAnimations {FountainReached, Killed};
 
     [SerializeField]
     private static readonly string[] elements = { "water", "fire", "earth", "air" };
@@ -15,11 +18,19 @@ public class Ghost : MonoBehaviour
     [SerializeField]
     private int maxLives = 5;
 
+    [SerializeField]
+    private NavMeshAgent navMeshAgent;
+
+    [SerializeField]
+    private GameObject fountainOfLife;
+
     private Dictionary<string, int> assignedElements = new Dictionary<string, int>();
+
+
 
     private void Start()
     {
-        //AssignElements(1);
+        navMeshAgent.SetDestination(fountainOfLife.transform.position);
     }
 
     public void Init(int difficulty)
@@ -76,5 +87,23 @@ public class Ghost : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (CollidedWithFountain(other))
+        {
+            Die(DeathAnimations.FountainReached);
+        }
+    }
 
+    private bool CollidedWithFountain(Collider other)
+    {
+        return other.gameObject.GetComponent<FountainOfLife>() != null;
+    }
+
+    private void Die(DeathAnimations animation)
+    {
+        Destroy(gameObject);
+        Debug.Log("Dead");
+        //todo: Play Animation based on caller
+    }
 }
