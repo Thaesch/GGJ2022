@@ -19,10 +19,20 @@ public class Shoot : MonoBehaviour
         PhotonView pv = GetComponent<PhotonView>();
 
         blockTime -= Time.deltaTime;
-        if (Input.GetMouseButton(0) && blockTime <= 0 && (!PhotonNetwork.IsConnected || pv.IsMine))
+        if (Input.GetMouseButton(0) && blockTime <= 0 )
         {
+
+            if (!PhotonNetwork.IsConnected)
+            {
+                GameObject.Instantiate<GameObject>(projectile.gameObject, spawnPosition.position, spawnPosition.rotation);
+            }
+            else if(pv.IsMine)
+            {
+                PhotonNetwork.Instantiate("prefabs/projectiles/"+ projectile.name, spawnPosition.position, spawnPosition.rotation);
+            }
+
+
             blockTime = minBlockTime;
-            GameObject instance =  GameObject.Instantiate<GameObject>(projectile.gameObject, spawnPosition.position, spawnPosition.rotation);
         }
     }
 }
