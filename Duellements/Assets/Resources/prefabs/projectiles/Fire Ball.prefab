@@ -51,9 +51,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5788202218370191709, guid: 8955f2d6a41084241a32f7d85221359f, type: 3}
+      propertyPath: RotationModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788202218370191709, guid: 8955f2d6a41084241a32f7d85221359f, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788202218370191709, guid: 8955f2d6a41084241a32f7d85221359f, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788202218370191709, guid: 8955f2d6a41084241a32f7d85221359f, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788202218370191709, guid: 8955f2d6a41084241a32f7d85221359f, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5788202218370191711, guid: 8955f2d6a41084241a32f7d85221359f, type: 3}
       propertyPath: m_Name
       value: FireAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599941600240076771, guid: 8955f2d6a41084241a32f7d85221359f, type: 3}
+      propertyPath: RotationModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599941600240076771, guid: 8955f2d6a41084241a32f7d85221359f, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599941600240076771, guid: 8955f2d6a41084241a32f7d85221359f, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599941600240076771, guid: 8955f2d6a41084241a32f7d85221359f, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8955f2d6a41084241a32f7d85221359f, type: 3}
@@ -167,3 +203,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5039782885309372187, guid: 5f16ea543e4df7543b0d02d2195616a3, type: 3}
   m_PrefabInstance: {fileID: 7677632814900297432}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2780879151745265307 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5484193046143914051, guid: 5f16ea543e4df7543b0d02d2195616a3, type: 3}
+  m_PrefabInstance: {fileID: 7677632814900297432}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1347945635694037147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780879151745265307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7afe67b208a7ddc409cab331400271d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 400
