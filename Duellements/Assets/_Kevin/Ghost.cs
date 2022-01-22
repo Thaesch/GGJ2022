@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.AI;
-
+using Photon.Pun;
 
 [RequireComponent(typeof(Damagable))]
-public class Ghost : MonoBehaviour
+public class Ghost : MonoBehaviourPunCallbacks
 {
 
     private enum DeathAnimations {FountainReached, Killed};
@@ -32,6 +32,7 @@ public class Ghost : MonoBehaviour
 
     private void Start()
     {
+        if(PhotonNetwork.IsConnected && !photonView.IsMine) { enabled = false; navMeshAgent.enabled = false; return; }
         // TODO: Set Reference after instantiating
         navMeshAgent.SetDestination(GameObject.Find("FountainOfLife").transform.position);
     }
@@ -116,8 +117,8 @@ public class Ghost : MonoBehaviour
     }
 
     private void ReceiveDamage(float damange, Element element)
-    { 
-        throw new System.NotImplementedException();
+    {
+        Die(DeathAnimations.FountainReached);
     }
 
     private void Die(DeathAnimations animation)
