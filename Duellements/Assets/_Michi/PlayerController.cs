@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviourPunCallbacks
 {
     public float speed = 10;
-    public Healthbar healthbar;
+    public HealthBar healthbar;
 
     // Start is called before the first frame update
     void Awake()
