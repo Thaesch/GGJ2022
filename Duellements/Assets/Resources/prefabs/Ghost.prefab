@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 8208422464366275465}
-  elementsRenderer: {fileID: 0}
+  elementsRenderer: {fileID: 2623144314650343625}
   minLives: 40
   maxLives: 100
   navMeshAgent: {fileID: 5812708940436065708}
@@ -748,6 +748,22 @@ PrefabInstance:
     - target: {fileID: 3650343592116281789, guid: e3b7ae509fa90d24ab797867d4b7c692, type: 3}
       propertyPath: looping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650343592116281789, guid: e3b7ae509fa90d24ab797867d4b7c692, type: 3}
+      propertyPath: NoiseModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650343592116281789, guid: e3b7ae509fa90d24ab797867d4b7c692, type: 3}
+      propertyPath: VelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650343592116281789, guid: e3b7ae509fa90d24ab797867d4b7c692, type: 3}
+      propertyPath: VelocityModule.y.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650343592116281789, guid: e3b7ae509fa90d24ab797867d4b7c692, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 3650343592116281789, guid: e3b7ae509fa90d24ab797867d4b7c692, type: 3}
       propertyPath: InitialModule.maxNumParticles
