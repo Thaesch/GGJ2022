@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.AI;
 
 
 [RequireComponent(typeof(Damagable))]
 public class Ghost : MonoBehaviour
 {
+
+    private enum DeathAnimations {FountainReached, Killed};
 
     [SerializeField]
     private static readonly string[] elements = { "water", "fire", "earth", "air" };
@@ -17,17 +20,30 @@ public class Ghost : MonoBehaviour
     [SerializeField]
     private int maxLives = 5;
 
+    [SerializeField]
+    private NavMeshAgent navMeshAgent;
+
+    [SerializeField]
+    private GameObject fountainOfLife;
+
     private Dictionary<string, int> assignedElements = new Dictionary<string, int>();
 
+
+
+    private void Start()
+    {
+        // TODO: Set Reference after instantiating
+        navMeshAgent.SetDestination(GameObject.Find("FountainOfLife").transform.position);
+    }
 
     private void OnEnable()
     {
         GetComponent<Damagable>().OnDamaged += ReceiveDamage;
     }
+
     private void OnDisable()
     {
         GetComponent<Damagable>().OnDamaged -= ReceiveDamage;
-
     }
 
 
@@ -86,10 +102,28 @@ public class Ghost : MonoBehaviour
 
     }
 
-    private void ReceiveDamage(float damange, Element element)
+    private void OnTriggerEnter(Collider other)
     {
+        if (CollidedWithFountain(other))
+        {
+            Die(DeathAnimations.FountainReached);
+        }
+    }
+
+    private bool CollidedWithFountain(Collider other)
+    {
+        return other.gameObject.GetComponent<FountainOfLife>() != null;
+    }
+
+    private void ReceiveDamage(float damange, Element element)
+    { 
         throw new System.NotImplementedException();
     }
 
-
+    private void Die(DeathAnimations animation)
+    {
+        NetworkSpawner.Destroy(gameObject);
+        Debug.Log("Dead");
+        //todo: Play Animation based on caller
+    }
 }

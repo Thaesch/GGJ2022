@@ -29,7 +29,7 @@ public class GhostSpawn : MonoBehaviour
 
     private void Spawn()
     {
-        Ghost newGhost = Instantiate<Ghost>(ghostPrefab, spawnPoint.transform.position, Quaternion.identity);
+        Ghost newGhost = NetworkSpawner.Instantiate<Ghost>("Ghost", spawnPoint.transform.position, Quaternion.identity);
         newGhost.Init(ghostDifficulties[UnityEngine.Random.Range(0, ghostDifficulties.Count)]);
         OnSpawn?.Invoke(newGhost);
     }

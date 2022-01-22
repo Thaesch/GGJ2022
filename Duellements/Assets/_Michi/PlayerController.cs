@@ -1,14 +1,20 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPunCallbacks
 {
     public float speed = 10;
+    public Healthbar healthbar;
+
     // Start is called before the first frame update
-    public HealthBar healthbar;
-    void Start()
+    void Awake()
     {
+        if(PhotonNetwork.IsConnected && !photonView.IsMine)
+        {
+            Destroy(this);
+        }
         healthbar.setMaxHealth(100);
     }
 
