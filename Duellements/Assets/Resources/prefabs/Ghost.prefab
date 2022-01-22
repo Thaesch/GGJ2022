@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b35dc0d7d0f91244a9d62ca7ef4ed363, type: 2}
+  - {fileID: 2100000, guid: 24d1a65efc2fc7d49b0fde5af75639bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,7 +120,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4104548086034888827}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0065, y: -0.00548, z: 0.0287}
+  m_LocalPosition: {x: -0.0065, y: -0.0063, z: 0.03011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6959375761287341158}
@@ -294,7 +294,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b35dc0d7d0f91244a9d62ca7ef4ed363, type: 2}
+  - {fileID: 2100000, guid: 24d1a65efc2fc7d49b0fde5af75639bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -438,7 +438,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8201195493734166519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0065, y: 0.00467, z: 0.02624}
+  m_LocalPosition: {x: -0.0065, y: 0.00307, z: 0.02764}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7492680209021651991}
@@ -759,7 +759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3650343592116281789, guid: e3b7ae509fa90d24ab797867d4b7c692, type: 3}
       propertyPath: VelocityModule.y.scalar
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3650343592116281789, guid: e3b7ae509fa90d24ab797867d4b7c692, type: 3}
       propertyPath: ShapeModule.radius.value
@@ -780,6 +780,10 @@ PrefabInstance:
     - target: {fileID: 3650343592116281789, guid: e3b7ae509fa90d24ab797867d4b7c692, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650343592116281789, guid: e3b7ae509fa90d24ab797867d4b7c692, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3650343592116281790, guid: e3b7ae509fa90d24ab797867d4b7c692, type: 3}
       propertyPath: m_Materials.Array.data[0]
