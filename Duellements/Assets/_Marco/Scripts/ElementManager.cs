@@ -8,7 +8,7 @@ namespace _Marco.Scripts
 {
     public class ElementManager : MonoBehaviour
     {
-        private static List<Element> Elements;
+        private static List<Element> Elements = new List<Element>();
 
         private void Awake()
         {
