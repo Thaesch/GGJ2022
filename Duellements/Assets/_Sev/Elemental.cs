@@ -13,7 +13,7 @@ public class Elemental : MonoBehaviour
     public float Health = 100;
 
     public float disadvantageMultier = 0.5f;
-    public float advantageMultiplier = 1.5f;
+    public float advantageMultiplier = 2f;
 
 
     private void Start()

@@ -240,7 +240,7 @@ MonoBehaviour:
   element: 0
   Health: 100
   disadvantageMultier: 0.5
-  advantageMultiplier: 1.5
+  advantageMultiplier: 2
 --- !u!114 &554399146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,6 +384,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 86325045}
+  cameraDistance: 15
+  maxCameraDistance: 20
+  minCameraDistance: 10
+  mouseWheelSenistivity: 1
 --- !u!1 &1082641946
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +483,7 @@ MonoBehaviour:
   element: 4
   Health: 100
   disadvantageMultier: 0.5
-  advantageMultiplier: 1.5
+  advantageMultiplier: 2
 --- !u!65 &1280741101
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -604,7 +608,7 @@ MonoBehaviour:
   element: 1
   Health: 100
   disadvantageMultier: 0.5
-  advantageMultiplier: 1.5
+  advantageMultiplier: 2
 --- !u!65 &1307168710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -865,7 +869,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 936810935, guid: b85a875195e886247af73c8ca0831734, type: 3}
       propertyPath: element
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3988786345336792836, guid: b85a875195e886247af73c8ca0831734, type: 3}
       propertyPath: m_Name
