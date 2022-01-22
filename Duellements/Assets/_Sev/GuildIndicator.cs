@@ -14,4 +14,9 @@ public class GuildIndicator : MonoBehaviour
     {
         GetComponent<Renderer>().material.color = Elements.GetColorOf(player.element);
     }
+
+    private void Update()
+    {
+        GetComponent<Renderer>().material.color = Elements.GetColorOf(player.element);
+    }
 }
