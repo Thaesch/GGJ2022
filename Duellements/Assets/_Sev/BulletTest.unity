@@ -388,6 +388,7 @@ MonoBehaviour:
   maxCameraDistance: 20
   minCameraDistance: 10
   mouseWheelSenistivity: 1
+  angle: 80
 --- !u!1 &1082641946
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,9 +868,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2831977360078168801, guid: b85a875195e886247af73c8ca0831734, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 936810935, guid: b85a875195e886247af73c8ca0831734, type: 3}
       propertyPath: element
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043099628027835520, guid: b85a875195e886247af73c8ca0831734, type: 3}
+      propertyPath: sceneViewId
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3988786345336792836, guid: b85a875195e886247af73c8ca0831734, type: 3}
       propertyPath: m_Name
