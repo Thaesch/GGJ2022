@@ -783,7 +783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  healthbar: {fileID: 0}
+  healthbar: {fileID: 1459195617}
 --- !u!1 &1439473765
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,6 +920,17 @@ MonoBehaviour:
   minCameraDistance: 10
   mouseWheelSenistivity: 2
   angle: 80
+--- !u!114 &1459195617 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7262357995625984889, guid: 5416ca1c86d817f4c942f17d542255e5, type: 3}
+  m_PrefabInstance: {fileID: 173182918}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f95aab741a698e41991f2febc6af44e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1682249949
 GameObject:
   m_ObjectHideFlags: 0

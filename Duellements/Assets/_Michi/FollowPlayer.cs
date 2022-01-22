@@ -8,7 +8,7 @@ public class FollowPlayer : MonoBehaviour
     public float cameraDistance = 15;
     public float maxCameraDistance = 20;
     public float minCameraDistance = 10;
-    public float mouseWheelSenistivity = 1;
+    public float mouseWheelSenistivity = 10;
     public float angle = 80;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,10 @@ public class FollowPlayer : MonoBehaviour
     {
         //transform.position = player.position 
         float wheelMovement = Input.GetAxis("Mouse ScrollWheel");
-        cameraDistance = cameraDistance + (wheelMovement * mouseWheelSenistivity);
+        cameraDistance -= (wheelMovement * mouseWheelSenistivity);
+        Debug.Log("Distanz: " + cameraDistance);
+        Debug.Log("Maus: " + wheelMovement);
+        Debug.Log("Sensitivity: " + mouseWheelSenistivity);
         if (cameraDistance > maxCameraDistance)
         {
             cameraDistance = maxCameraDistance;
