@@ -8,6 +8,7 @@ using UnityEngine;
 public class Elemental : MonoBehaviour
 {
 
+    public Element element = Element.NORMAL;
     public float Health = 100;
 
 
@@ -19,6 +20,9 @@ public class Elemental : MonoBehaviour
 
     private void TakeDamage(float damage)
     {
+
+
+
         Health -= damage;
         if (Health <= 0) Destroy(gameObject);
     }
