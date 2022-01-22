@@ -4,11 +4,19 @@ using UnityEngine;
 
 
 
-public enum Relation { Advantage = -1, None = 0, Disadvantage = 1 }
-public enum Element { NORMAL, WATER, FIRE, GROUND, WIND }
+public enum Relation { Disadvantage = -1, None = 0, Advantage = 1 }
+public enum Element { NORMAL = 0, WATER, FIRE, GROUND, WIND }
 
 public class Elements
 {
+
+    public static Element fromNumber(int i)
+    {
+        List<Element> elements = new List<Element>() { Element.NORMAL, Element.WATER, Element.FIRE, Element.GROUND, Element.WIND };
+        i = Mathf.Min( Mathf.Max(i, 0), elements.Count) ;
+        return elements[i];
+    }
+
     public static Relation RelationOf(Element A, Element B)
     {
         switch (A)
