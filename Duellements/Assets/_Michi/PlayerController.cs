@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             Destroy(this);
         }
-        healthbar.setMaxHealth(100);
     }
 
     // Update is called once per frame
