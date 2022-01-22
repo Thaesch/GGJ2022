@@ -6,7 +6,7 @@ public class FollowPlayer : MonoBehaviour
 {
     public Transform player;
     public float cameraDistance = 15;
-    public float maxCameraDistance = 20;
+    public float maxCameraDistance = 40;
     public float minCameraDistance = 10;
     public float mouseWheelSenistivity = 10;
     public float angle = 80;
