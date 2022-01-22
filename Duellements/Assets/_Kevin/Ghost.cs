@@ -8,6 +8,8 @@ using Photon.Pun;
 [RequireComponent(typeof(Damagable))]
 public class Ghost : MonoBehaviourPunCallbacks
 {
+    public HealthBar healthbar;
+    private int currentHealth;
 
     private enum DeathAnimations {FountainReached, Killed};
 
@@ -35,6 +37,8 @@ public class Ghost : MonoBehaviourPunCallbacks
         if(PhotonNetwork.IsConnected && !photonView.IsMine) { enabled = false; navMeshAgent.enabled = false; return; }
         // TODO: Set Reference after instantiating
         navMeshAgent.SetDestination(GameObject.Find("FountainOfLife").transform.position);
+        healthbar.setMaxHealth(maxLives);
+        currentHealth = maxLives;
     }
 
     private void OnEnable()
@@ -118,7 +122,14 @@ public class Ghost : MonoBehaviourPunCallbacks
 
     private void ReceiveDamage(float damange, Element element)
     {
-        Die(DeathAnimations.FountainReached);
+
+        currentHealth = currentHealth - 1;
+        healthbar.setHealth(currentHealth);
+        if (currentHealth <= 0)
+        {
+            Die(DeathAnimations.FountainReached);
+        }
+
     }
 
     private void Die(DeathAnimations animation)
