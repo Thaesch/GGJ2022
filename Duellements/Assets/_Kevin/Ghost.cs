@@ -30,8 +30,6 @@ public class Ghost : MonoBehaviourPunCallbacks
 
     private Dictionary<string, int> assignedElements = new Dictionary<string, int>();
 
-
-
     private void Start()
     {
         if(PhotonNetwork.IsConnected && !photonView.IsMine) { enabled = false; navMeshAgent.enabled = false; return; }
