@@ -9,15 +9,18 @@ public class FollowPlayer : MonoBehaviour
     public float maxCameraDistance = 20;
     public float minCameraDistance = 10;
     public float mouseWheelSenistivity = 1;
+    public float angle = 80;
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.rotation = Quaternion.Euler(angle, 0, 0);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //transform.position = player.position 
         float wheelMovement = Input.GetAxis("Mouse ScrollWheel");
         cameraDistance = cameraDistance + (wheelMovement * mouseWheelSenistivity);
         if (cameraDistance > maxCameraDistance)
@@ -27,6 +30,7 @@ public class FollowPlayer : MonoBehaviour
         {
             cameraDistance = minCameraDistance;
         }
-        transform.position = player.transform.position + new Vector3(0, cameraDistance, -5);
+        transform.position = player.transform.position;
+        transform.Translate(-Vector3.forward * cameraDistance);
     }
 }

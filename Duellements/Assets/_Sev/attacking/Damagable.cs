@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Damagable : MonoBehaviour
 {
-
     public delegate void Damaged(float damange, Element element);
     public event Damaged OnDamaged;
 

@@ -9,7 +9,6 @@ public enum Element { NORMAL, WATER, FIRE, GROUND, WIND }
 
 public class Elements
 {
-
     public static Relation RelationOf(Element A, Element B)
     {
         switch (A)

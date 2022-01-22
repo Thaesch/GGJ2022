@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+
+[RequireComponent(typeof(Damagable))]
 public class Ghost : MonoBehaviour
 {
 
@@ -17,10 +19,18 @@ public class Ghost : MonoBehaviour
 
     private Dictionary<string, int> assignedElements = new Dictionary<string, int>();
 
-    private void Start()
+
+    private void OnEnable()
     {
-        //AssignElements(1);
+        GetComponent<Damagable>().OnDamaged += ReceiveDamage;
     }
+    private void OnDisable()
+    {
+        GetComponent<Damagable>().OnDamaged -= ReceiveDamage;
+
+    }
+
+
 
     public void Init(int difficulty)
     {
@@ -74,6 +84,11 @@ public class Ghost : MonoBehaviour
         positions = positions.OrderBy(item => rnd.Next()).ToList<int>();
         return positions;
 
+    }
+
+    private void ReceiveDamage(float damange, Element element)
+    {
+        throw new System.NotImplementedException();
     }
 
 
