@@ -13,6 +13,7 @@ namespace _Marco.Scripts
         private void Awake()
         {
             Elements = Enum.GetValues(typeof(Element)).Cast<Element>().ToList();
+            Elements.RemoveAt(0);
 
             Elements = Elements.OrderBy(a => Random.value).ToList();
         }
