@@ -14,7 +14,7 @@ public class Ghost : MonoBehaviourPunCallbacks
     Element element = Element.NORMAL;
     private enum DeathAnimations {FountainReached, Killed};
 
-    public Renderer renderer;
+    public Renderer elementsRenderer;
 
     [SerializeField]
     private static readonly string[] elements = { "water", "fire", "earth", "air" };
@@ -39,6 +39,12 @@ public class Ghost : MonoBehaviourPunCallbacks
         navMeshAgent.SetDestination(Vector3.zero);
         healthbar.setMaxHealth(maxLives);
         health = maxLives;
+
+        int rand =  GetRandomElements()[0];
+        Debug.Log(rand);
+
+        this.element = Elements.fromNumber(rand+1);
+        elementsRenderer.material.color = Elements.GetColorOf(element);
     }
 
     private void OnEnable()
@@ -86,11 +92,10 @@ public class Ghost : MonoBehaviourPunCallbacks
         for(int i=0; i<amount; i++)
         {
             int lives = Random.Range(minLives, maxLives);
-            //assignedElements.Add(elements[randomElements[i]], lives);
+            assignedElements.Add(elements[randomElements[i]], lives);
 
             element =  Elements.fromNumber(randomElements[i]);
         }
-        GetComponent<Renderer>().material.color = Elements.GetColorOf(element);
 
         // Todo: Update Grafik / ParticleEffect depending on the assigned elements
         // Todo: Hier kommt noch a Fehlersche (das zweimal dasselbe Element hinzugefügt wurde)
