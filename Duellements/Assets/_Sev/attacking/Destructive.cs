@@ -27,7 +27,7 @@ public class Destructive : MonoBehaviour
         Damagable dmg = collider.GetComponent<Damagable>();
         if (dmg != null)
         {
-            dmg.Damage(Damage);
+            dmg.Damage(Damage, element);
             OnHit(dmg);
         }
     }
