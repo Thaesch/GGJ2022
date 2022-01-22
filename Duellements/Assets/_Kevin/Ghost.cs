@@ -9,24 +9,24 @@ using Photon.Pun;
 public class Ghost : MonoBehaviourPunCallbacks
 {
     public HealthBar healthbar;
-    private int currentHealth;
+    private float health;
 
+    Element element = Element.NORMAL;
     private enum DeathAnimations {FountainReached, Killed};
+
+    public Renderer renderer;
 
     [SerializeField]
     private static readonly string[] elements = { "water", "fire", "earth", "air" };
 
     [SerializeField]
-    private int minLives = 3;
+    private int minLives = 10;
 
     [SerializeField]
-    private int maxLives = 5;
+    private int maxLives = 100;
 
     [SerializeField]
     private NavMeshAgent navMeshAgent;
-
-    [SerializeField]
-    private GameObject fountainOfLife;
 
     private Dictionary<string, int> assignedElements = new Dictionary<string, int>();
 
@@ -36,9 +36,9 @@ public class Ghost : MonoBehaviourPunCallbacks
     {
         if(PhotonNetwork.IsConnected && !photonView.IsMine) { enabled = false; navMeshAgent.enabled = false; return; }
         // TODO: Set Reference after instantiating
-        navMeshAgent.SetDestination(GameObject.Find("FountainOfLife").transform.position);
+        navMeshAgent.SetDestination(Vector3.zero);
         healthbar.setMaxHealth(maxLives);
-        currentHealth = maxLives;
+        health = maxLives;
     }
 
     private void OnEnable()
@@ -77,7 +77,7 @@ public class Ghost : MonoBehaviourPunCallbacks
     {
         AssignElements(3);
     }
-
+    
     private void AssignElements(int amount)
     {
 
@@ -86,10 +86,11 @@ public class Ghost : MonoBehaviourPunCallbacks
         for(int i=0; i<amount; i++)
         {
             int lives = Random.Range(minLives, maxLives);
-            assignedElements.Add(elements[randomElements[i]], lives);
+            //assignedElements.Add(elements[randomElements[i]], lives);
+
+            element =  Elements.fromNumber(randomElements[i]);
         }
-
-
+        GetComponent<Renderer>().material.color = Elements.GetColorOf(element);
 
         // Todo: Update Grafik / ParticleEffect depending on the assigned elements
         // Todo: Hier kommt noch a Fehlersche (das zweimal dasselbe Element hinzugefügt wurde)
@@ -115,12 +116,18 @@ public class Ghost : MonoBehaviourPunCallbacks
         NetworkSpawner.Destroy(gameObject);
     }
 
-    private void ReceiveDamage(float damage, Element element)
+    private void ReceiveDamage(float damage, Element incoming)
     {
 
-        currentHealth = currentHealth - 1;
-        healthbar.setHealth(currentHealth);
-        if (currentHealth <= 0)
+        Relation rel = Elements.RelationOf(incoming, element);
+
+        if (rel == Relation.Advantage) damage *= 2;
+        else if (rel == Relation.Disadvantage) damage *= 0.5f;
+
+        health -= damage;
+        healthbar.setHealth(health);
+
+        if (health <= 0)
         {
             Die();
         }
