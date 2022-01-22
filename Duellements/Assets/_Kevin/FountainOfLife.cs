@@ -10,8 +10,13 @@ public class FountainOfLife : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("foo");
-        lifeLeft -= 1; // Maybe: other.GetComponent<Ghost>().Damage ?
+        if (other.GetComponent<Ghost>())
+        {
+            lifeLeft -= 1;
+            other.GetComponent<Ghost>().Released();
+        }
+        
+
     }
 
 }

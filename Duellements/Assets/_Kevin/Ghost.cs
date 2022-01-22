@@ -96,6 +96,8 @@ public class Ghost : MonoBehaviourPunCallbacks
 
     }
 
+   
+
     private List<int> GetRandomElements()
     {
 
@@ -107,35 +109,26 @@ public class Ghost : MonoBehaviourPunCallbacks
 
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    private void Die()
     {
-        if (CollidedWithFountain(other))
-        {
-            Die(DeathAnimations.FountainReached);
-        }
+        NetworkSpawner.Destroy(gameObject);
     }
 
-    private bool CollidedWithFountain(Collider other)
-    {
-        return other.gameObject.GetComponent<FountainOfLife>() != null;
-    }
-
-    private void ReceiveDamage(float damange, Element element)
+    private void ReceiveDamage(float damage, Element element)
     {
 
         currentHealth = currentHealth - 1;
         healthbar.setHealth(currentHealth);
         if (currentHealth <= 0)
         {
-            Die(DeathAnimations.FountainReached);
+            Die();
         }
 
     }
 
-    private void Die(DeathAnimations animation)
+    public void Released()
     {
         NetworkSpawner.Destroy(gameObject);
-        Debug.Log("Dead");
-        //todo: Play Animation based on caller
     }
 }
