@@ -30,6 +30,17 @@ public class Ghost : MonoBehaviourPunCallbacks
 
     private Dictionary<string, int> assignedElements = new Dictionary<string, int>();
 
+
+    public int MaxLives
+    {
+        get { return maxLives; }
+    }
+
+    public float Health
+    {
+        get { return health; }
+    }
+
     private void Start()
     {
         if(PhotonNetwork.IsConnected && !photonView.IsMine) { enabled = false; navMeshAgent.enabled = false; return; }
