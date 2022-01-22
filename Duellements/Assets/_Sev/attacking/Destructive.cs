@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,11 +24,11 @@ public class Destructive : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-
+        PhotonView otherView = collider.GetComponent<PhotonView>();
         Damagable dmg = collider.GetComponent<Damagable>();
-        if (dmg != null)
+        if (dmg != null && otherView != null)
         {
-            dmg.Damage(Damage);
+            MessageService.ApplyDamage(otherView, Damage, element);
             OnHit(dmg);
         }
     }

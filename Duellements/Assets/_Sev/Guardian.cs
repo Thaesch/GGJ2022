@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof (PlayerController))]
 [RequireComponent(typeof (Shoot))]
-public class Player : MonoBehaviour
+public class Guardian : MonoBehaviour
 {
 
     public Element element = Element.NORMAL;

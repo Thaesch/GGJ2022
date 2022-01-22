@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.AI;
 
+
+[RequireComponent(typeof(Damagable))]
 public class Ghost : MonoBehaviour
 {
 
@@ -32,6 +34,18 @@ public class Ghost : MonoBehaviour
     {
         navMeshAgent.SetDestination(fountainOfLife.transform.position);
     }
+
+    private void OnEnable()
+    {
+        GetComponent<Damagable>().OnDamaged += ReceiveDamage;
+    }
+
+    private void OnDisable()
+    {
+        GetComponent<Damagable>().OnDamaged -= ReceiveDamage;
+    }
+
+
 
     public void Init(int difficulty)
     {
@@ -98,6 +112,11 @@ public class Ghost : MonoBehaviour
     private bool CollidedWithFountain(Collider other)
     {
         return other.gameObject.GetComponent<FountainOfLife>() != null;
+    }
+
+    private void ReceiveDamage(float damange, Element element)
+    { 
+        throw new System.NotImplementedException();
     }
 
     private void Die(DeathAnimations animation)
