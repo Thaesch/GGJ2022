@@ -32,7 +32,8 @@ public class Ghost : MonoBehaviour
 
     private void Start()
     {
-        navMeshAgent.SetDestination(fountainOfLife.transform.position);
+        // TODO: Set Reference after instantiating
+        navMeshAgent.SetDestination(GameObject.Find("FountainOfLife").transform.position);
     }
 
     private void OnEnable()
@@ -121,7 +122,7 @@ public class Ghost : MonoBehaviour
 
     private void Die(DeathAnimations animation)
     {
-        Destroy(gameObject);
+        NetworkSpawner.Destroy(gameObject);
         Debug.Log("Dead");
         //todo: Play Animation based on caller
     }
