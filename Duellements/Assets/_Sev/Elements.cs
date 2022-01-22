@@ -59,8 +59,8 @@ public class Elements
         {
             case Element.FIRE: return Color.red;
             case Element.WATER: return Color.blue;
-            case Element.WIND: return Color.yellow;
-            case Element.GROUND: return Color.black;
+            case Element.WIND: return Color.white;
+            case Element.GROUND: return new Color(156,100,18);
             default: return Color.gray;
         }
     }
