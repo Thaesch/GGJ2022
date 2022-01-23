@@ -20,9 +20,17 @@ public class FountainOfLife : MonoBehaviour
 
     [SerializeField]
     private int lifeLeft = 100;
+    public int LifeLeft
+    {
+        get { return lifeLeft; }
+    }
 
     [SerializeField]
     private Timer playtimeTimer;
+    public Timer PlaytimeTimer
+    {
+        get { return playtimeTimer; }
+    }
 
     private void Start()
     {
@@ -46,6 +54,8 @@ public class FountainOfLife : MonoBehaviour
     {
         if(lifeLeft <= 0)
         {
+            Debug.Log("GameOver!");
+
             OnGameOver?.Invoke();
         }
     }
