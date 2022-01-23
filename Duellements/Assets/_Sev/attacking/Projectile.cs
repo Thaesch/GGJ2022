@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,14 +40,17 @@ public class Projectile : MonoBehaviour
         }
     }
 
-   
+
 
     private void SelfDestruct()
     {
-        Destroy(gameObject);
+        if (PhotonNetwork.IsConnected)
+            PhotonNetwork.Destroy(gameObject);
+        else
+            Destroy(gameObject);
 
     }
 
-  
+
 
 }
