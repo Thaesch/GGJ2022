@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using _Marco;
 using Photon.Pun;
@@ -45,7 +46,7 @@ public class GhostSpawn : MonoBehaviour
             difficulties.Add(new Wave()
             {
                 Duration = 2,
-                GhostHealth = 4,
+                GhostHealth = 100,
                 GhostPerWave = 1
             });
             currentWave = difficulties[0];
@@ -92,10 +93,20 @@ public class GhostSpawn : MonoBehaviour
         timer.Waittime -= ((SpawnCDReductionCmd)spawnCDReductionCmd).ReductionTime;
     }
 
-    private void IncreaseDifficulty()
+    private async void IncreaseDifficulty()
     {
+        print("Wait");
+        timer.Stop();
+        while (GameObject.FindObjectsOfType<Ghost>().Any())
+        {
+            await Task.Yield();
+        }
+        print("Continue");
+        
+        
         difficulty = Mathf.Min(difficulty + 1, difficulties.Count - 1);
         SetupWave();
+        timer.Run();
     }
 
     //public void UnlockDifficulty(DifficultyIncreasementCmd difficultyIncreasementCmd)
