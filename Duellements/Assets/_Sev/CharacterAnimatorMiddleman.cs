@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[RequireComponent(typeof(PhotonView))]
 public class CharacterAnimatorMiddleman : MonoBehaviour
 {
 
@@ -14,7 +14,11 @@ public class CharacterAnimatorMiddleman : MonoBehaviour
     {
         if (PhotonNetwork.IsConnected)
         {
-
+            if (GetComponent<PhotonView>().IsMine)
+            {
+                float speed = GetComponent<PlayerController>().CurrentSpeed;
+                animator.SetFloat("Speed", speed);
+            }
         }
         else
         {
@@ -26,11 +30,15 @@ public class CharacterAnimatorMiddleman : MonoBehaviour
     {
         if (PhotonNetwork.IsConnected)
         {
+            if (GetComponent<PhotonView>().IsMine)
+            {
+                float speed = GetComponent<PlayerController>().CurrentSpeed;
+                animator.SetFloat("Speed", speed);
+            }
 
         }else
         {
             float speed = GetComponent<PlayerController>().CurrentSpeed;
-            Debug.Log(speed);
             animator.SetFloat("Speed", speed);
         }
 
