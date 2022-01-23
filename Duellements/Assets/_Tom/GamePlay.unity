@@ -33982,7 +33982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostReleaseFXSpawn: {fileID: 698649548}
-  lifeLeft: 3
+  lifeLeft: 10
   playtimeTimer: {fileID: 4348635407616414209}
 --- !u!135 &4348635407616414207
 SphereCollider:
@@ -34025,7 +34025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afcda054d8d4b0049b5baf63dbb18fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waittime: 60
+  waittime: 120
   startOnAwake: 1
   oneShot: 1
 --- !u!1 &4350244616036838086
