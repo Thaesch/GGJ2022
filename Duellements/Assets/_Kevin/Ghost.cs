@@ -43,23 +43,46 @@ public class Ghost : MonoBehaviourPunCallbacks
         get { return health; }
     }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(health);
+            stream.SendNext(maxLives);
+
+        }
+        else
+        {
+            health = (float)stream.ReceiveNext();
+            maxLives = (int)stream.ReceiveNext();
+            healthbar.setMaxHealth(maxLives);
+            healthbar.setHealth(health); 
+        }
+    }
+
     private void Start()
     {
-        if(PhotonNetwork.IsConnected && !photonView.IsMine) { enabled = false; navMeshAgent.enabled = false; return; }
+        if (PhotonNetwork.IsConnected && !photonView.IsMine)
+        {
+            navMeshAgent.enabled = false;
+        }
+        else
+        {
+            navMeshAgent.SetDestination(Vector3.zero);
+            health = maxLives;
+            healthbar.setMaxHealth(maxLives);
+
+            int rand = GetRandomElements()[0];
+            Debug.Log(rand);
+
+            this.element = Elements.fromNumber(rand + 1);
+            ghostRenderer.material.SetColor("_OutlineColor", Elements.GetOutlineColorOf(element));
+            ghostRenderer.material.SetColor("_MainColor", Elements.GetColorOf(element));
+            Color elementColor = Elements.GetOutlineColorOf(element);
+            elementColor.a = .5f;
+            ghostTail.material.color = elementColor;
+        }
         // TODO: Set Reference after instantiating
-        navMeshAgent.SetDestination(Vector3.zero);
-        healthbar.setMaxHealth(maxLives);
-        health = maxLives;
-
-        int rand =  GetRandomElements()[0];
-        Debug.Log(rand);
-
-        this.element = Elements.fromNumber(rand+1);
-        ghostRenderer.material.SetColor("_OutlineColor", Elements.GetOutlineColorOf(element));
-        ghostRenderer.material.SetColor("_MainColor", Elements.GetColorOf(element));
-        Color elementColor = Elements.GetOutlineColorOf(element);
-        elementColor.a = .5f;
-        ghostTail.material.color = elementColor;
     }
 
     private void OnEnable()
@@ -133,7 +156,8 @@ public class Ghost : MonoBehaviourPunCallbacks
 
     private void Die()
     {
-        NetworkSpawner.Destroy(gameObject);
+        if (photonView.IsMine)
+            NetworkSpawner.Destroy(gameObject);
     }
 
     private void ReceiveDamage(float damage, Element incoming)
@@ -156,6 +180,7 @@ public class Ghost : MonoBehaviourPunCallbacks
 
     public void Released()
     {
-        NetworkSpawner.Destroy(gameObject);
+        if (photonView.IsMine)
+            NetworkSpawner.Destroy(gameObject);
     }
 }

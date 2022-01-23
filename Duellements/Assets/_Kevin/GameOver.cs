@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    
-    [SerializeField]
 
+    [SerializeField]
+    public GhostSpawn[] ghostSpawns;
 
 
 
