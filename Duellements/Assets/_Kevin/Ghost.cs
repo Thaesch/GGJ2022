@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.AI;
 using Photon.Pun;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Damagable))]
 public class Ghost : MonoBehaviourPunCallbacks
@@ -11,10 +12,11 @@ public class Ghost : MonoBehaviourPunCallbacks
     public HealthBar healthbar;
     private float health;
 
-    Element element = Element.NORMAL;
+    [SerializeField] Element element = Element.NORMAL;
     private enum DeathAnimations {FountainReached, Killed};
 
-    public Renderer elementsRenderer;
+    public Renderer ghostRenderer;
+    public ParticleSystemRenderer ghostTail;
 
     [SerializeField]
     private static readonly string[] elements = { "water", "fire", "earth", "air" };
@@ -41,19 +43,46 @@ public class Ghost : MonoBehaviourPunCallbacks
         get { return health; }
     }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(health);
+            stream.SendNext(maxLives);
+
+        }
+        else
+        {
+            health = (float)stream.ReceiveNext();
+            maxLives = (int)stream.ReceiveNext();
+            healthbar.setMaxHealth(maxLives);
+            healthbar.setHealth(health); 
+        }
+    }
+
     private void Start()
     {
-        if(PhotonNetwork.IsConnected && !photonView.IsMine) { enabled = false; navMeshAgent.enabled = false; return; }
+        if (PhotonNetwork.IsConnected && !photonView.IsMine)
+        {
+            navMeshAgent.enabled = false;
+        }
+        else
+        {
+            navMeshAgent.SetDestination(Vector3.zero);
+            health = maxLives;
+            healthbar.setMaxHealth(maxLives);
+
+            int rand = GetRandomElements()[0];
+            Debug.Log(rand);
+
+            this.element = Elements.fromNumber(rand + 1);
+            ghostRenderer.material.SetColor("_OutlineColor", Elements.GetOutlineColorOf(element));
+            ghostRenderer.material.SetColor("_MainColor", Elements.GetColorOf(element));
+            Color elementColor = Elements.GetOutlineColorOf(element);
+            elementColor.a = .5f;
+            ghostTail.material.color = elementColor;
+        }
         // TODO: Set Reference after instantiating
-        navMeshAgent.SetDestination(Vector3.zero);
-        healthbar.setMaxHealth(maxLives);
-        health = maxLives;
-
-        int rand =  GetRandomElements()[0];
-        Debug.Log(rand);
-
-        this.element = Elements.fromNumber(rand+1);
-        elementsRenderer.material.color = Elements.GetColorOf(element);
     }
 
     private void OnEnable()
@@ -103,11 +132,11 @@ public class Ghost : MonoBehaviourPunCallbacks
             int lives = Random.Range(minLives, maxLives);
             assignedElements.Add(elements[randomElements[i]], lives);
 
-            element =  Elements.fromNumber(randomElements[i]);
+            element =  Elements.GetRandomElement();
         }
 
         // Todo: Update Grafik / ParticleEffect depending on the assigned elements
-        // Todo: Hier kommt noch a Fehlersche (das zweimal dasselbe Element hinzugefügt wurde)
+        // Todo: Hier kommt noch a Fehlersche (das zweimal dasselbe Element hinzugefÃ¼gt wurde)
 
     }
 
@@ -127,7 +156,8 @@ public class Ghost : MonoBehaviourPunCallbacks
 
     private void Die()
     {
-        NetworkSpawner.Destroy(gameObject);
+        if (photonView.IsMine)
+            NetworkSpawner.Destroy(gameObject);
     }
 
     private void ReceiveDamage(float damage, Element incoming)
@@ -150,6 +180,7 @@ public class Ghost : MonoBehaviourPunCallbacks
 
     public void Released()
     {
-        NetworkSpawner.Destroy(gameObject);
+        if (photonView.IsMine)
+            NetworkSpawner.Destroy(gameObject);
     }
 }
