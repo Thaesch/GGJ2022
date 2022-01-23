@@ -24,12 +24,16 @@ public class Destructive : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        PhotonView otherView = collider.GetComponent<PhotonView>();
-        Damagable dmg = collider.GetComponent<Damagable>();
-        if (dmg != null && otherView != null)
+
+        if (PhotonNetwork.IsConnected && GetComponent<PhotonView>().IsMine)
         {
-            MessageService.ApplyDamage(otherView, Damage, element);
-            OnHit(dmg);
+            PhotonView otherView = collider.GetComponent<PhotonView>();
+            Damagable dmg = collider.GetComponent<Damagable>();
+            if (dmg != null && otherView != null)
+            {
+                MessageService.ApplyDamage(otherView, Damage, element);
+                OnHit(dmg);
+            }
         }
     }
 }

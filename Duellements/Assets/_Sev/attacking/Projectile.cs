@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Destructive))]
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviourPunCallbacks
 {
 
     public float Speed = 1.0f;
@@ -16,11 +16,13 @@ public class Projectile : MonoBehaviour
 
     public void OnEnable()
     {
+        base.OnEnable();
         GetComponent<Destructive>().OnHit += Hit;
     }
 
     public void OnDisable()
     {
+        base.OnDisable();
         GetComponent<Destructive>().OnHit -= Hit;
     }
 
@@ -44,7 +46,7 @@ public class Projectile : MonoBehaviour
 
     private void SelfDestruct()
     {
-        if (PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnected && photonView.IsMine)
             PhotonNetwork.Destroy(gameObject);
         else
             Destroy(gameObject);

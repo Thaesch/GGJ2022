@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         if(PhotonNetwork.IsConnected && !photonView.IsMine)
         {
-            Destroy(this);
+            this.enabled = false;
         }
     }
 
