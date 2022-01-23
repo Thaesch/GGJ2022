@@ -211,6 +211,16 @@ MonoBehaviour:
   ghostPrefab: {fileID: 9104424403462758370, guid: 56811fb7b461972478c83676a0e3b277, type: 3}
   timer: {fileID: 0}
   spawnPoint: {fileID: 0}
+  difficulties:
+  - GhostPerWave: 1
+    GhostHealth: 100
+    Duration: 5
+  - GhostPerWave: 2
+    GhostHealth: 1
+    Duration: 100
+  - GhostPerWave: 3
+    GhostHealth: 2
+    Duration: 1
 --- !u!114 &2042022298399532981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +255,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 0
+  sceneViewId: 4
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &2496342535537219603

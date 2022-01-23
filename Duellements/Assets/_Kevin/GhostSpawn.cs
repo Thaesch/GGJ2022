@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using _Marco;
 using Photon.Pun;
 
 using UnityEngine;
@@ -17,39 +20,82 @@ public class GhostSpawn : MonoBehaviour
     [SerializeField]
     private GameObject spawnPoint;
 
-    //[SerializeField]
-    //private List<int> ghostDifficulties = new List<int>() { 0 };
+    private int difficulty = 0;
+    private int wave = 0;
+    private Wave currentWave;
+
+    [SerializeField] private List<Wave> difficulties = new List<Wave>();
 
     // Start is called before the first frame update
     void Start()
     {
         timer.OnTimeout += Spawn;
+  
+        SetupWave();
+    }
+
+    private void SetupWave()
+    {
+        if (difficulties.Count > 0)
+        {
+            currentWave = difficulties[difficulty];
+        }
+        else
+        {
+            difficulties.Add(new Wave()
+            {
+                Duration = 2,
+                GhostHealth = 4,
+                GhostPerWave = 1
+            });
+            currentWave = difficulties[0];
+        }
+        
+        wave = currentWave.Duration;
     }
 
     private void Spawn()
     {
-
-
-        Ghost newGhost;
-        if (PhotonNetwork.IsConnected)
+        wave--;
+        Debug.Log("Wave is: " + wave);
+        if (wave < 0)
         {
-            if (PhotonNetwork.IsMasterClient)
+            IncreaseDifficulty();
+        }
+        for (int i = 0; i < currentWave?.GhostPerWave; i++)
+        {
+            Ghost newGhost = null;
+            if (PhotonNetwork.IsConnected)
             {
-                newGhost = NetworkSpawner.Instantiate<Ghost>("Ghost", this.transform.position, Quaternion.identity);
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    newGhost = NetworkSpawner.Instantiate<Ghost>("Ghost", this.transform.position, Quaternion.identity);
+                    
+                    OnSpawn?.Invoke(newGhost);
+                }
+            }
+            else
+            {
+                newGhost = Instantiate<Ghost>(ghostPrefab, this.transform.position, Quaternion.identity);
                 OnSpawn?.Invoke(newGhost);
             }
-        }
-        else
-        {
-            newGhost = Instantiate<Ghost>(ghostPrefab, this.transform.position, Quaternion.identity);
-            OnSpawn?.Invoke(newGhost);
-        }
 
+            if (newGhost != null)
+            {
+                newGhost.MaxLives = currentWave.GhostHealth;
+            }
+        }
     }
 
     public void DecreaseCooldown(DifficultyIncreasementCmd spawnCDReductionCmd)
     {
         timer.Waittime -= ((SpawnCDReductionCmd)spawnCDReductionCmd).ReductionTime;
+    }
+
+    private void IncreaseDifficulty()
+    {
+        difficulty = Mathf.Min(difficulty + 1, difficulties.Count - 1);
+        SetupWave();
     }
 
     //public void UnlockDifficulty(DifficultyIncreasementCmd difficultyIncreasementCmd)

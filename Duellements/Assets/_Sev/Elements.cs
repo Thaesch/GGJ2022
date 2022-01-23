@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ public enum Element { NORMAL = 0, WATER, FIRE, GROUND, WIND }
 
 public class Elements
 {
+    private static System.Random random = new System.Random(Guid.NewGuid().GetHashCode());
+    
     public static List<Element> GetMagicElements()
     {
         List<Element> elements = System.Enum.GetValues(typeof(Element)).Cast<Element>().ToList();
@@ -24,8 +27,9 @@ public class Elements
 
     public static List<Element> GetMagicElementsInRandomOrder()
     {
+        
         List<Element> elements = GetMagicElements();
-        return elements.OrderBy(a => Random.value).ToList();
+        return elements.OrderBy(a => random.Next()).ToList();
     }
 
     public static Element fromNumber(int i)

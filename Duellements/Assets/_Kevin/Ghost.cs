@@ -36,6 +36,7 @@ public class Ghost : MonoBehaviourPunCallbacks
     public int MaxLives
     {
         get { return maxLives; }
+        set {  maxLives = value; }
     }
 
     public float Health
@@ -72,10 +73,7 @@ public class Ghost : MonoBehaviourPunCallbacks
             health = maxLives;
             healthbar.setMaxHealth(maxLives);
 
-            int rand = GetRandomElements()[0];
-            Debug.Log(rand);
-
-            this.element = Elements.fromNumber(rand + 1);
+            this.element = Elements.GetRandomElement();
             ghostRenderer.material.SetColor("_OutlineColor", Elements.GetOutlineColorOf(element));
             ghostRenderer.material.SetColor("_MainColor", Elements.GetColorOf(element));
             Color elementColor = Elements.GetOutlineColorOf(element);
