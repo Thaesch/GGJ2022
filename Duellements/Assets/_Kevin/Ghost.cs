@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.AI;
 using Photon.Pun;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Damagable))]
 public class Ghost : MonoBehaviourPunCallbacks
@@ -14,7 +15,8 @@ public class Ghost : MonoBehaviourPunCallbacks
     Element element = Element.NORMAL;
     private enum DeathAnimations {FountainReached, Killed};
 
-    public Renderer elementsRenderer;
+    public Renderer ghostRenderer;
+    public ParticleSystemRenderer ghostTail;
 
     [SerializeField]
     private static readonly string[] elements = { "water", "fire", "earth", "air" };
@@ -53,7 +55,11 @@ public class Ghost : MonoBehaviourPunCallbacks
         Debug.Log(rand);
 
         this.element = Elements.fromNumber(rand+1);
-        elementsRenderer.material.color = Elements.GetColorOf(element);
+        ghostRenderer.material.SetColor("_OutlineColor", Elements.GetOutlineColorOf(element));
+        ghostRenderer.material.SetColor("_MainColor", Elements.GetColorOf(element));
+        Color elementColor = Elements.GetOutlineColorOf(element);
+        elementColor.a = .5f;
+        ghostTail.material.color = elementColor;
     }
 
     private void OnEnable()
@@ -107,7 +113,7 @@ public class Ghost : MonoBehaviourPunCallbacks
         }
 
         // Todo: Update Grafik / ParticleEffect depending on the assigned elements
-        // Todo: Hier kommt noch a Fehlersche (das zweimal dasselbe Element hinzugefügt wurde)
+        // Todo: Hier kommt noch a Fehlersche (das zweimal dasselbe Element hinzugefÃ¼gt wurde)
 
     }
 

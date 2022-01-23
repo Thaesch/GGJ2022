@@ -71,10 +71,22 @@ public class Elements
     {
         switch (element)
         {
-            case Element.FIRE: return Color.red;
-            case Element.WATER: return Color.blue;
-            case Element.WIND: return Color.white;
-            case Element.GROUND: return new Color(156,100,18);
+            case Element.FIRE: return new Color(1,.529f,0);
+            case Element.WATER: return new Color(0,.466f,1);
+            case Element.WIND: return new Color(.7f,.7f,.7f);
+            case Element.GROUND: return new Color(.611f,.392f,.07f);
+            default: return Color.gray;
+        }
+    }
+    
+    public static Color GetOutlineColorOf(Element element)
+    {
+        switch (element)
+        {
+            case Element.FIRE: return new Color(1,0,0);
+            case Element.WATER: return new Color(0,.2f,1);
+            case Element.WIND: return new Color(.392f,.392f,.392f);
+            case Element.GROUND: return new Color(.07f,.07f,.07f);
             default: return Color.gray;
         }
     }
