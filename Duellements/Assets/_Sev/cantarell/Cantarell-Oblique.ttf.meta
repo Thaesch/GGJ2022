@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: f8aa81f1a9fc9bd4f9358e581b8a5403
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Cantarell
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 30b2447273fda434fad1134340e4b87a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

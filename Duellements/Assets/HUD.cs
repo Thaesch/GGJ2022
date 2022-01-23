@@ -26,12 +26,14 @@ public class HUD : MonoBehaviour
 
     public void OnGameOver()
     {
+        Debug.Log("GAMEOVER RECHAED");
         background.GetComponent<Image>().enabled = true;
         defeatMsg.GetComponent<Image>().enabled = true;
     }
 
     public void OnSuccess()
     {
+        Debug.Log("SUCCESS REACHED");
         background.GetComponent<Image>().enabled = true;
         sucessMsg.GetComponent<Image>().enabled = true;
     }
