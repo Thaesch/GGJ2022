@@ -31,8 +31,16 @@ public class Shoot : MonoBehaviour
                 PhotonNetwork.Instantiate("prefabs/projectiles/"+ projectile.name, spawnPosition.position, spawnPosition.rotation);
             }
 
-
             blockTime = minBlockTime;
         }
     }
+
+    public void BlockTimeDecrease(float decrease)
+    {
+        if(minBlockTime > 0.3f)
+        {
+            minBlockTime -= decrease;
+        }
+    }
+
 }
