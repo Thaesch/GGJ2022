@@ -460,6 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostReleaseFX: {fileID: 5337493136435473304, guid: 234611e49ea230145928b20046d17eaf, type: 3}
+  spawnPosition: {x: 2, y: -2, z: 3.5}
 --- !u!1 &818507652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,63 +1197,6 @@ Transform:
   m_Father: {fileID: 138420768}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1953846765
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5337493136435473305, guid: 234611e49ea230145928b20046d17eaf, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5337493136435473305, guid: 234611e49ea230145928b20046d17eaf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5337493136435473305, guid: 234611e49ea230145928b20046d17eaf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5337493136435473305, guid: 234611e49ea230145928b20046d17eaf, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5337493136435473305, guid: 234611e49ea230145928b20046d17eaf, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5337493136435473305, guid: 234611e49ea230145928b20046d17eaf, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5337493136435473305, guid: 234611e49ea230145928b20046d17eaf, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5337493136435473305, guid: 234611e49ea230145928b20046d17eaf, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5337493136435473305, guid: 234611e49ea230145928b20046d17eaf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5337493136435473305, guid: 234611e49ea230145928b20046d17eaf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5337493136435473305, guid: 234611e49ea230145928b20046d17eaf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5337493136435473306, guid: 234611e49ea230145928b20046d17eaf, type: 3}
-      propertyPath: m_Name
-      value: GhostReleaseFX
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 234611e49ea230145928b20046d17eaf, type: 3}
 --- !u!1 &1954844229
 GameObject:
   m_ObjectHideFlags: 0
@@ -35223,6 +35167,7 @@ GameObject:
   - component: {fileID: 4962971156720859296}
   - component: {fileID: 4962971156720859311}
   - component: {fileID: 4962971156720859310}
+  - component: {fileID: 4962971156720859312}
   m_Layer: 0
   m_Name: GameField
   m_TagString: Untagged
@@ -35274,6 +35219,18 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
+--- !u!114 &4962971156720859312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4962971156720859309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7bb543fd4375e347b325aa69a27ac57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &4962971156724445152
 MeshFilter:
   m_ObjectHideFlags: 0

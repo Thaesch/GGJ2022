@@ -8,6 +8,9 @@ public class FountainOfLife : MonoBehaviour
     public delegate void GhostReleased();
     public GhostReleased OnGhostReleased;
 
+    public delegate void GameOver();
+    public GameOver OnGameOver;
+
     [SerializeField]
     private GhostReleaseFXSpawn ghostReleaseFXSpawn;
 
@@ -21,16 +24,22 @@ public class FountainOfLife : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger");
 
         if (other.GetComponent<Ghost>())
         {
             lifeLeft -= 1;
             other.GetComponent<Ghost>().Released();
             OnGhostReleased?.Invoke();
-            Debug.Log("Should spawn");
+            CheckGameOver();
         }
+    }
 
+    private void CheckGameOver()
+    {
+        if(lifeLeft <= 0)
+        {
+            OnGameOver?.Invoke();
+        }
     }
 
 }
