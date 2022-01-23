@@ -12,7 +12,7 @@ public class Ghost : MonoBehaviourPunCallbacks
     public HealthBar healthbar;
     private float health;
 
-    Element element = Element.NORMAL;
+    [SerializeField] Element element = Element.NORMAL;
     private enum DeathAnimations {FountainReached, Killed};
 
     public Renderer ghostRenderer;
@@ -109,7 +109,7 @@ public class Ghost : MonoBehaviourPunCallbacks
             int lives = Random.Range(minLives, maxLives);
             assignedElements.Add(elements[randomElements[i]], lives);
 
-            element =  Elements.fromNumber(randomElements[i]);
+            element =  Elements.GetRandomElement();
         }
 
         // Todo: Update Grafik / ParticleEffect depending on the assigned elements

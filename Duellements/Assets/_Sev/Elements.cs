@@ -10,15 +10,19 @@ public enum Element { NORMAL = 0, WATER, FIRE, GROUND, WIND }
 
 public class Elements
 {
-
-    public List<Element> GetMagicElements()
+    public static List<Element> GetMagicElements()
     {
         List<Element> elements = System.Enum.GetValues(typeof(Element)).Cast<Element>().ToList();
         elements.RemoveAt(0);
         return elements;
     }
 
-    public List<Element> GetMagicElementsInRandomOrder()
+    public static Element GetRandomElement()
+    {
+        return GetMagicElementsInRandomOrder().First();
+    }
+
+    public static List<Element> GetMagicElementsInRandomOrder()
     {
         List<Element> elements = GetMagicElements();
         return elements.OrderBy(a => Random.value).ToList();
