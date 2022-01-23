@@ -18,9 +18,6 @@ public class GhostSpawn : MonoBehaviour
     [SerializeField]
     private Timer timer;
 
-    [SerializeField]
-    private GameObject spawnPoint;
-
     private int difficulty = 0;
     private int wave = 0;
     private Wave currentWave;
