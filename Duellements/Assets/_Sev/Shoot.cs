@@ -2,9 +2,16 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.Events;
+
+[Serializable]
+public class ActionEvent : UnityEvent<string, GameObject> { }
 
 public class Shoot : MonoBehaviour
 {
+
+    public ActionEvent OnShot;
 
     public Projectile projectile;
     public Transform spawnPosition;

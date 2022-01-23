@@ -8,6 +8,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public float speed = 10;
     public HealthBar healthbar;
 
+    private float _currentSpeed = 0;
+
+    public float CurrentSpeed
+    {
+        get
+        {
+            return _currentSpeed;
+        }
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -22,6 +32,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         float hinput = Input.GetAxis("Horizontal");
         float vinput = Input.GetAxis("Vertical");
+
+        _currentSpeed = Mathf.Sqrt(hinput * hinput + vinput * vinput);
+
         transform.Translate(new Vector3(hinput, 0, vinput) * speed * Time.deltaTime, Space.World);
         Vector3 mousePos = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
@@ -35,6 +48,5 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             transform.rotation = Quaternion.LookRotation(whereToLook, Vector3.up);
         }
-            
     }
 }

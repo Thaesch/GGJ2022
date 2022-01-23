@@ -122,3 +122,5 @@ Temporary Items
 *.afphoto
 Duellements/Assets/_Sev/textures/rock.afphoto.meta
 **/_Chris/**/*.meta
+Duellements/Assets/ExplosiveLLC.meta
+Duellements/Assets/ExplosiveLLC/*
