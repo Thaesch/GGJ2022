@@ -18512,46 +18512,6 @@ Transform:
   m_Father: {fileID: 7968841365661621463}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2042022298220184390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042022298220184392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd449a42842a5a54d9501d5142383978, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ghostPrefab: {fileID: 9104424403462758370, guid: 56811fb7b461972478c83676a0e3b277, type: 3}
-  timer: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  difficulties:
-  - GhostPerWave: 1
-    GhostHealth: 100
-    Duration: 5
-  - GhostPerWave: 1
-    GhostHealth: 150
-    Duration: 3
-  - GhostPerWave: 2
-    GhostHealth: 80
-    Duration: 4
---- !u!114 &2042022298220184391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042022298220184392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afcda054d8d4b0049b5baf63dbb18fe6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waittime: 3
-  startOnAwake: 1
-  oneShot: 0
 --- !u!1 &2042022298220184392
 GameObject:
   m_ObjectHideFlags: 0
@@ -18561,9 +18521,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2042022298220184393}
-  - component: {fileID: 2042022298220184390}
-  - component: {fileID: 2042022298220184391}
-  - component: {fileID: 8304745907350919203}
   m_Layer: 0
   m_Name: Spawn Point (1)
   m_TagString: Untagged
@@ -29322,28 +29279,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5442028943039892161}
   m_Mesh: {fileID: 6239881831769578202, guid: 25774f2b1e1882040b6984f0335f4c99, type: 3}
---- !u!114 &8304745907350919203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042022298220184392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 1
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!198 &8606804934116575834
 ParticleSystem:
   m_ObjectHideFlags: 0
