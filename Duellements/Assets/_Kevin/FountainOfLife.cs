@@ -54,15 +54,12 @@ public class FountainOfLife : MonoBehaviour
     {
         if(lifeLeft <= 0)
         {
-            Debug.Log("GameOver!");
-
             OnGameOver?.Invoke();
         }
     }
 
     private void CommunicateSuccess()
     {
-        Debug.Log("SUCCESS!");
         OnSuccess?.Invoke();
     }
 

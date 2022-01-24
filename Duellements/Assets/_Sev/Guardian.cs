@@ -19,11 +19,9 @@ public class Guardian : MonoBehaviour
         element = ElementManager.GetPlayerElement();
         weapon = GetComponent<Shoot>();
 
-        Debug.Log($"projectiles: {projectiles.Count} elements: {(int)element-1}");
         if (projectiles.Count > (int)element-1 && (int)element >= 0)
         {
             weapon.projectile = projectiles[(int)element-1];
-            Debug.Log("Set Projectile: " + projectiles[(int)element-1].name);
         }
     }
 }

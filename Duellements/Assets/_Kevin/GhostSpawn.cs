@@ -18,6 +18,9 @@ public class GhostSpawn : MonoBehaviour
     [SerializeField]
     private Timer timer;
 
+    [SerializeField]
+    private bool isLeftOne = true;
+
     private int difficulty = 0;
     private int wave = 0;
     private Wave currentWave;
@@ -55,7 +58,6 @@ public class GhostSpawn : MonoBehaviour
     private void Spawn()
     {
         wave--;
-        Debug.Log("Wave is: " + wave);
         if (wave < 0)
         {
             IncreaseDifficulty();
@@ -68,7 +70,8 @@ public class GhostSpawn : MonoBehaviour
                 if (PhotonNetwork.IsMasterClient)
                 {
                     newGhost = NetworkSpawner.Instantiate<Ghost>("Ghost", this.transform.position, Quaternion.identity);
-                    
+                    newGhost.GetComponent<GhostDestination>().SetDestination(PathFindingPoints.Instance.InitialPoint(isLeftOne));
+
                     OnSpawn?.Invoke(newGhost);
                 }
             }
@@ -92,14 +95,11 @@ public class GhostSpawn : MonoBehaviour
 
     private async void IncreaseDifficulty()
     {
-        print("Wait");
         timer.Stop();
         while (GameObject.FindObjectsOfType<Ghost>().Any())
         {
             await Task.Yield();
         }
-        print("Continue");
-        
         
         difficulty = Mathf.Min(difficulty + 1, difficulties.Count - 1);
         SetupWave();

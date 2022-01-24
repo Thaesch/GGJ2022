@@ -27,11 +27,7 @@ public class Ghost : MonoBehaviourPunCallbacks
     [SerializeField]
     private int maxLives = 100;
 
-    [SerializeField]
-    private NavMeshAgent navMeshAgent;
-
     private Dictionary<string, int> assignedElements = new Dictionary<string, int>();
-
 
     public int MaxLives
     {
@@ -50,7 +46,6 @@ public class Ghost : MonoBehaviourPunCallbacks
         {
             stream.SendNext(health);
             stream.SendNext(maxLives);
-
         }
         else
         {
@@ -63,13 +58,8 @@ public class Ghost : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        if (PhotonNetwork.IsConnected && !photonView.IsMine)
+        if (!(PhotonNetwork.IsConnected && !photonView.IsMine))
         {
-            navMeshAgent.enabled = false;
-        }
-        else
-        {
-            navMeshAgent.SetDestination(Vector3.zero);
             health = maxLives;
             healthbar.setMaxHealth(maxLives);
 
@@ -92,8 +82,6 @@ public class Ghost : MonoBehaviourPunCallbacks
     {
         GetComponent<Damagable>().OnDamaged -= ReceiveDamage;
     }
-
-
 
     public void Init(int difficulty)
     {
@@ -133,12 +121,7 @@ public class Ghost : MonoBehaviourPunCallbacks
             element =  Elements.GetRandomElement();
         }
 
-        // Todo: Update Grafik / ParticleEffect depending on the assigned elements
-        // Todo: Hier kommt noch a Fehlersche (das zweimal dasselbe Element hinzugefügt wurde)
-
     }
-
-   
 
     private List<int> GetRandomElements()
     {
