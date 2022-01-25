@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviourPunCallbacks
 {
     public float speed = 10;
     public HealthBar healthbar;
 
     private float _currentSpeed = 0;
+    private Rigidbody rigidbody;
 
     public float CurrentSpeed
     {
@@ -21,9 +23,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Awake()
     {
-        if(PhotonNetwork.IsConnected && !photonView.IsMine)
+        if (PhotonNetwork.IsConnected)
         {
-            this.enabled = false;
+            if (!photonView.IsMine)
+            {
+                this.enabled = false;
+            }
+            else
+            {
+                rigidbody = GetComponent<Rigidbody>();
+            }
         }
     }
 
@@ -33,9 +42,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
         float hinput = Input.GetAxis("Horizontal");
         float vinput = Input.GetAxis("Vertical");
 
-        _currentSpeed = Mathf.Sqrt(hinput * hinput + vinput * vinput);
+        _currentSpeed = Mathf.Sqrt(hinput * hinput + vinput * vinput); 
 
-        transform.Translate(new Vector3(hinput, 0, vinput) * speed * Time.deltaTime, Space.World);
+        rigidbody.velocity = new Vector3(hinput, 0, vinput) * speed;
         Vector3 mousePos = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         RaycastHit hit;
@@ -43,10 +52,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
         if (Physics.Raycast(ray, out hit, LayerMask.GetMask("Ground")))
         {
             //Rotation anpassen.
-            Vector3 whereToLook = hit.point - transform.position;
-            whereToLook.y = transform.position.y;
+            Vector3 whereToLook = hit.point - rigidbody.position;
+            whereToLook.y = rigidbody.position.y;
 
-            transform.rotation = Quaternion.LookRotation(whereToLook, Vector3.up);
+            rigidbody.rotation = Quaternion.LookRotation(whereToLook, Vector3.up);
         }
     }
 }
