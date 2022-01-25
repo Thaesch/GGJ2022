@@ -48,7 +48,7 @@ public class Projectile : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected && photonView.IsMine)
             PhotonNetwork.Destroy(gameObject);
-        else
+        else if(!PhotonNetwork.IsConnected)
             Destroy(gameObject);
 
     }

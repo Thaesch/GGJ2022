@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class HUD : MonoBehaviour
+public class HUD : MonoBehaviourPunCallbacks
 {
 
     [SerializeField]
@@ -26,14 +27,26 @@ public class HUD : MonoBehaviour
 
     public void OnGameOver()
     {
+        photonView.RPC("GameOverRequest", RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
+    private void GameOverRequest()
+    {
         background.GetComponent<Image>().enabled = true;
         defeatMsg.GetComponent<Image>().enabled = true;
     }
 
-    public void OnSuccess()
+    [PunRPC]
+    private void SuccessRequest()
     {
         background.GetComponent<Image>().enabled = true;
         sucessMsg.GetComponent<Image>().enabled = true;
+    }
+
+    public void OnSuccess()
+    {
+        photonView.RPC("SuccessRequest", RpcTarget.AllBuffered);
     }
 
 }

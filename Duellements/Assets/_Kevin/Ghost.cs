@@ -7,7 +7,7 @@ using Photon.Pun;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Damagable))]
-public class Ghost : MonoBehaviourPunCallbacks
+public class Ghost : MonoBehaviourPunCallbacks, IPunObservable
 {
     public HealthBar healthbar;
     private float health;
@@ -69,8 +69,20 @@ public class Ghost : MonoBehaviourPunCallbacks
             Color elementColor = Elements.GetOutlineColorOf(element);
             elementColor.a = .5f;
             ghostTail.material.color = elementColor;
+            photonView.RPC("SyncElement", RpcTarget.OthersBuffered, element);
         }
         // TODO: Set Reference after instantiating
+    }
+
+    [PunRPC]
+    private void SyncElement(Element elementToSync)
+    {
+        this.element = elementToSync;
+        ghostRenderer.material.SetColor("_OutlineColor", Elements.GetOutlineColorOf(element));
+        ghostRenderer.material.SetColor("_MainColor", Elements.GetColorOf(element));
+        Color elementColor = Elements.GetOutlineColorOf(element);
+        elementColor.a = .5f;
+        ghostTail.material.color = elementColor;
     }
 
     private void OnEnable()

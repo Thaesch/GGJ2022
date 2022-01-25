@@ -24,7 +24,10 @@ public class GhostDestination : MonoBehaviourPunCallbacks
 
     public void SetDestination(PathFindingPoint destination)
     {
-        navMeshAgent.SetDestination(destination.transform.position);
+        if(navMeshAgent.enabled)
+        {
+            navMeshAgent.SetDestination(destination.transform.position);
+        }
     }
 
     public void OnTriggerEnter(Collider other)

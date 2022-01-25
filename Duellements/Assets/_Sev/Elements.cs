@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 
 public enum Relation { Disadvantage = -1, None = 0, Advantage = 1 }
-public enum Element { NORMAL = 0, WATER, FIRE, GROUND, WIND }
+[System.Serializable]public enum Element { NORMAL = 0, WATER, FIRE, GROUND, WIND }
 
 public class Elements
 {

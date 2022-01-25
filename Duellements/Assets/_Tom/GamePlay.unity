@@ -22263,6 +22263,7 @@ GameObject:
   - component: {fileID: 3812846688079050429}
   - component: {fileID: 3812846688079050425}
   - component: {fileID: 3812846688079050422}
+  - component: {fileID: 3812846688079050432}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -22270,6 +22271,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3812846688079050432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812846688079050431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 5
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &3812846688848418436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86996,6 +87019,7 @@ GameObject:
   - component: {fileID: 428841208168475315}
   - component: {fileID: 2318341037105625439}
   - component: {fileID: 9104308654140059212}
+  - component: {fileID: 9104308654140059213}
   m_Layer: 5
   m_Name: LifeLeft
   m_TagString: Untagged
@@ -87017,6 +87041,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fountainOfLife: {fileID: 4348635407616414206}
   slider: {fileID: 2318341037105625439}
+--- !u!114 &9104308654140059213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104308654140059211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 9104308654140059212}
+  sceneViewId: 4
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!4 &9161525419120664737
 Transform:
   m_ObjectHideFlags: 0
