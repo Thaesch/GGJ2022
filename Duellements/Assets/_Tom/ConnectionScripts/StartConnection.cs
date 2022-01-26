@@ -85,7 +85,7 @@ using UnityEngine.UI;
         {
             if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
-                PhotonNetwork.LoadLevel("GamePlay");
+                PhotonNetwork.LoadLevel("Lobby");
             }
         }
 

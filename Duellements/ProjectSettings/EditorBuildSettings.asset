@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/_Tom/Connection.unity
     guid: ecfe21dae6c41b7409a473628478aeae
   - enabled: 1
+    path: Assets/_Tom/Lobby.unity
+    guid: 2e6a698033899ff41965c663cc9e277f
+  - enabled: 1
     path: Assets/_Tom/GamePlay.unity
     guid: f67388ab2f5f37e4e9bbae4750451615
   m_configObjects: {}

@@ -20,6 +20,7 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //transform.position = player.position 
         float wheelMovement = Input.GetAxis("Mouse ScrollWheel");
         cameraDistance -= (wheelMovement * mouseWheelSenistivity);
@@ -30,7 +31,7 @@ public class FollowPlayer : MonoBehaviour
         {
             cameraDistance = minCameraDistance;
         }
-        transform.position = player.transform.position;
+        if(player)transform.position = player.transform.position;
         transform.Translate(-Vector3.forward * cameraDistance);
     }
 }
